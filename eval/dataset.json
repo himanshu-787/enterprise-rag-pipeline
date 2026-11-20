@@ -1,0 +1,162 @@
+[
+  {
+    "id": "eval_01",
+    "query": "How do I validate query parameter string lengths with min and max limits in FastAPI?",
+    "category": "Query Validation",
+    "target_heading": "Query Parameters and String Validations",
+    "target_keywords": ["Query", "min_length", "max_length"],
+    "expected_answer": "Use Query(..., min_length=3, max_length=50) to enforce length limits."
+  },
+  {
+    "id": "eval_02",
+    "query": "How to make a query parameter mandatory when using Query in FastAPI?",
+    "category": "Query Validation",
+    "target_heading": "Required Query Parameters with Ellipsis",
+    "target_keywords": ["Query", "..."],
+    "expected_answer": "Use ... (Ellipsis) as the first default argument to Query(..., min_length=3)."
+  },
+  {
+    "id": "eval_03",
+    "query": "How to accept multiple values for a query parameter list in FastAPI?",
+    "category": "Query Validation",
+    "target_heading": "Query Parameter List / Multiple Values",
+    "target_keywords": ["list", "Query", "multiple"],
+    "expected_answer": "Declare the type annotation as list[str] = Query(default=['foo', 'bar'])."
+  },
+  {
+    "id": "eval_04",
+    "query": "How to implement OAuth2 password bearer token authentication in FastAPI?",
+    "category": "Security",
+    "target_heading": "Implementing OAuth2PasswordBearer",
+    "target_keywords": ["OAuth2PasswordBearer", "tokenUrl", "Depends"],
+    "expected_answer": "Instantiate oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token') and inject with Depends."
+  },
+  {
+    "id": "eval_05",
+    "query": "How to create a login endpoint with OAuth2PasswordRequestForm?",
+    "category": "Security",
+    "target_heading": "Token Endpoint",
+    "target_keywords": ["OAuth2PasswordRequestForm", "access_token", "token_type"],
+    "expected_answer": "Create a POST endpoint using form_data: OAuth2PasswordRequestForm = Depends()."
+  },
+  {
+    "id": "eval_06",
+    "query": "How does dependency injection work with Depends in FastAPI?",
+    "category": "Dependencies",
+    "target_heading": "Dependency Injection System",
+    "target_keywords": ["Depends", "dependency injection", "common_parameters"],
+    "expected_answer": "Pass a callable to Depends(common_parameters) in your path operation function arguments."
+  },
+  {
+    "id": "eval_07",
+    "query": "How to clean up database sessions after requests using yield in FastAPI?",
+    "category": "Dependencies",
+    "target_heading": "Dependencies with `yield` and Resource Teardown",
+    "target_keywords": ["yield", "close", "db", "finally"],
+    "expected_answer": "Use a generator dependency with yield db and a finally: db.close() block."
+  },
+  {
+    "id": "eval_08",
+    "query": "How to prevent re-executing the same dependency within a single request?",
+    "category": "Dependencies",
+    "target_heading": "Dependency Caching with `use_cache`",
+    "target_keywords": ["use_cache", "cache", "sub-dependencies"],
+    "expected_answer": "FastAPI enables use_cache=True by default for sub-dependencies to share results."
+  },
+  {
+    "id": "eval_09",
+    "query": "How to configure CORS middleware allow origins in FastAPI?",
+    "category": "Middleware",
+    "target_heading": "CORS (Cross-Origin Resource Sharing) and Middleware",
+    "target_keywords": ["CORSMiddleware", "allow_origins", "add_middleware"],
+    "expected_answer": "Use app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True)."
+  },
+  {
+    "id": "eval_10",
+    "query": "How to execute asynchronous background tasks after returning a response?",
+    "category": "Background Tasks",
+    "target_heading": "Background Tasks",
+    "target_keywords": ["BackgroundTasks", "add_task", "notification"],
+    "expected_answer": "Declare background_tasks: BackgroundTasks parameter and call background_tasks.add_task(func, args)."
+  },
+  {
+    "id": "eval_11",
+    "query": "How to raise an HTTP 404 error with custom message and headers in FastAPI?",
+    "category": "Error Handling",
+    "target_heading": "Handling Errors and Custom Exceptions",
+    "target_keywords": ["HTTPException", "status_code", "detail"],
+    "expected_answer": "Raise HTTPException(status_code=404, detail='Item not found', headers={...})."
+  },
+  {
+    "id": "eval_12",
+    "query": "How to register a custom exception handler for domain exceptions in FastAPI?",
+    "category": "Error Handling",
+    "target_heading": "Custom Exception Handlers",
+    "target_keywords": ["exception_handler", "JSONResponse", "Request"],
+    "expected_answer": "Use the decorator @app.exception_handler(CustomException) returning JSONResponse."
+  },
+  {
+    "id": "eval_13",
+    "query": "How to test FastAPI endpoints using TestClient and pytest?",
+    "category": "Testing",
+    "target_heading": "Testing FastAPI Applications with TestClient",
+    "target_keywords": ["TestClient", "pytest", "client.get"],
+    "expected_answer": "Instantiate client = TestClient(app) and assert client.get('/').status_code == 200."
+  },
+  {
+    "id": "eval_14",
+    "query": "How to declare a request body using Pydantic BaseModel in FastAPI?",
+    "category": "Request Body",
+    "target_heading": "Request Body and Pydantic Models",
+    "target_keywords": ["BaseModel", "pydantic", "request body"],
+    "expected_answer": "Subclass pydantic.BaseModel and declare it as the endpoint function argument."
+  },
+  {
+    "id": "eval_15",
+    "query": "How do path parameters validate integer types in FastAPI?",
+    "category": "Path Parameters",
+    "target_heading": "Path Parameters with Types",
+    "target_keywords": ["path parameters", "item_id: int", "validation"],
+    "expected_answer": "Declare item_id: int in the path function argument; FastAPI converts and validates automatically."
+  },
+  {
+    "id": "eval_16",
+    "query": "How does path operation ordering affect fixed versus dynamic paths in FastAPI?",
+    "category": "Path Parameters",
+    "target_heading": "Path Order Matters",
+    "target_keywords": ["order", "/users/me", "/users/{user_id}"],
+    "expected_answer": "Declare fixed paths like /users/me before dynamic paths like /users/{user_id}."
+  },
+  {
+    "id": "eval_17",
+    "query": "How to run multiple Uvicorn workers for production deployment?",
+    "category": "Deployment",
+    "target_heading": "ASGI Servers: Uvicorn and Gunicorn",
+    "target_keywords": ["uvicorn", "--workers", "gunicorn"],
+    "expected_answer": "Run uvicorn main:app --workers 4 or use Gunicorn with UvicornWorker."
+  },
+  {
+    "id": "eval_18",
+    "query": "What underlying frameworks provide routing and data validation to FastAPI?",
+    "category": "Architecture",
+    "target_heading": "Technical Foundations",
+    "target_keywords": ["Starlette", "Pydantic", "Uvicorn"],
+    "expected_answer": "Starlette provides web routing and concurrency; Pydantic handles validation; Uvicorn provides ASGI serving."
+  },
+  {
+    "id": "eval_19",
+    "query": "How to measure request processing time with custom HTTP middleware?",
+    "category": "Middleware",
+    "target_heading": "Custom Middleware for Timing and Request ID",
+    "target_keywords": ["middleware", "time.time()", "X-Process-Time"],
+    "expected_answer": "Use @app.middleware('http') to compute time delta and set custom response headers."
+  },
+  {
+    "id": "eval_20",
+    "query": "How to declare optional query parameters with None defaults in FastAPI?",
+    "category": "Query Parameters",
+    "target_heading": "Optional Query Parameters",
+    "target_keywords": ["Optional[str]", "None", "query parameters"],
+    "expected_answer": "Declare q: Optional[str] = None in endpoint parameter list."
+  }
+]
