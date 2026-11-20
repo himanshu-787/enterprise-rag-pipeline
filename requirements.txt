@@ -1,0 +1,41 @@
+# Core RAG framework
+llama-index>=0.11.0
+llama-index-vector-stores-qdrant
+llama-index-embeddings-huggingface
+llama-index-retrievers-bm25
+llama-index-llms-huggingface-api
+
+# Vector DB client
+qdrant-client>=1.9.0
+
+# Models (embeddings + reranker)
+sentence-transformers>=3.0.0
+transformers>=4.40.0
+torch
+
+# Sparse retrieval
+rank-bm25
+
+# Semantic cache
+redis>=5.0.0
+
+# API
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.6.0
+pydantic-settings>=2.2.0
+
+# Document parsing
+pypdf
+beautifulsoup4
+markdown
+
+# Evaluation
+pandas
+numpy
+ragas
+datasets
+
+# Dev
+pytest
+python-dotenv
