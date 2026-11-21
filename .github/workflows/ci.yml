@@ -14,7 +14,7 @@ jobs:
         python-version: ["3.10", "3.11"]
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
@@ -28,22 +28,27 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run environment check
+    - name: Run system health check
       run: |
         python scripts/healthcheck.py
 
-    - name: Run test suite
-      run: |
-        pytest -v --durations=10
-
-    - name: Verify ingestion and indexing pipeline
+    - name: Prepare documentation dataset and build indexes
       run: |
         python scripts/download_docs.py
         python scripts/ingest.py
         python scripts/build_index.py --recreate
         python scripts/build_bm25.py
+
+    - name: Run test suite
+      run: |
+        pytest -v --durations=10
+
+    - name: Verify search and retrieval CLI utilities
+      run: |
         python scripts/search_dense.py "validate query parameters"
         python scripts/search_hybrid.py "OAuth2 authentication tokens"
+        python scripts/search_rerank.py "OAuth2 password bearer"
+        python scripts/cache_demo.py
 
     - name: Run benchmark evaluation
       run: |
