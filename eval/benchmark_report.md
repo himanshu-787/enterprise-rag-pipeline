@@ -7,10 +7,10 @@
 
 | Configuration | Precision@5 | Recall@5 | MRR | Hit Rate@5 | Avg Latency (ms) | p95 Latency (ms) |
 |---|---|---|---|---|---|---|
-| **Baseline (Dense Only)** | 0.400 | 1.000 | 0.975 | 100.0% | 142.6ms | 143.3ms |
-| **Sparse Only (BM25)** | 0.420 | 1.000 | 0.967 | 100.0% | 0.1ms | 0.2ms |
-| **Hybrid (Dense + BM25 RRF)** | 0.410 | 1.000 | 0.975 | 100.0% | 3.1ms | 4.9ms |
-| **Hybrid + Rerank (Full Pipeline)** | **0.430** | **1.000** | **0.975** | **100.0%** | 5.6ms | 6.9ms |
+| **Baseline (Dense Only)** | 0.400 | 1.000 | 0.975 | 100.0% | 293.1ms | 294.1ms |
+| **Sparse Only (BM25)** | 0.420 | 1.000 | 0.967 | 100.0% | 0.2ms | 0.2ms |
+| **Hybrid (Dense + BM25 RRF)** | 0.410 | 1.000 | 0.975 | 100.0% | 5.7ms | 7.5ms |
+| **Hybrid + Rerank (Full Pipeline)** | **0.430** | **1.000** | **0.975** | **100.0%** | 7.2ms | 8.4ms |
 
 ## Key Findings
 

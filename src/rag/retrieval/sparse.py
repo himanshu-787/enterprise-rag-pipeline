@@ -105,16 +105,10 @@ class BM25Retriever:
             self.load_index(str(self.index_file))
 
     def index_chunks(self, chunks: List[Dict[str, Any]]):
-        """Build BM25 index over chunk context_text."""
+        """Build BM25 index over chunk context_text using smoothed non-negative BM25Okapi."""
         self.chunks = chunks
         corpus_tokens = [tokenize_technical_text(c["context_text"]) for c in chunks]
-
-        # Use rank_bm25 if available, else pure python implementation
-        try:
-            from rank_bm25 import BM25Okapi
-            self._bm25 = BM25Okapi(corpus_tokens)
-        except ImportError:
-            self._bm25 = PureBM25Okapi(corpus_tokens)
+        self._bm25 = PureBM25Okapi(corpus_tokens)
 
     def save_index(self, path: Optional[str] = None):
         """Serialize BM25 index and chunk metadata to disk."""

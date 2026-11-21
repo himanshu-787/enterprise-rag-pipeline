@@ -53,6 +53,11 @@ class BGEEmbedder:
         if self._model is not None or self._is_fallback:
             return
 
+        # In automated CI test environments, use deterministic fast embedding to avoid 1.3GB+ download and CPU throttling
+        if os.environ.get("CI") == "true" or os.environ.get("RAG_FAST_MODE") == "1":
+            self._is_fallback = True
+            return
+
         resolved_device = self._resolve_device()
         try:
             from sentence_transformers import SentenceTransformer
